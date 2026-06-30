@@ -1,0 +1,58 @@
+image: rust:latest
+
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  CARGO_HOME: $CI_PROJECT_DIR/.cargo
+  RUSTFLAGS: "-D warnings"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .cargo/
+    - target/
+
+before_script:
+  - rustup target add wasm32-unknown-unknown
+  - cargo install dioxus-cli --locked
+  - cargo install trunk --locked
+
+# Test stage
+test:
+  stage: test
+  script:
+    - cargo check
+    - cargo clippy -- -D warnings
+  allow_failure: true
+
+# Build stage
+build:
+  stage: build
+  script:
+    - dx build --release
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+  only:
+    - main
+    - master
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - cp -r dist/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+    - master
+  environment:
+    name: production
+    url: https://abolfazlghorbani369.gitlab.io/aportfolio/

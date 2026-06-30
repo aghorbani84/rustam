@@ -1,0 +1,17 @@
+[application]
+name = "aportfolio"
+
+[web.app]
+title = "Abolfazl Ghorbani | Full-Stack Rust Developer"
+
+[web.resource]
+style = ["src/styles/app.css"]
+script = []
+
+[web.resource.dev]
+style = []
+script = []
+
+[web.watcher]
+index_on_404 = true
+watch_path = ["src"]
