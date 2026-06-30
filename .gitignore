@@ -1,3 +1,6 @@
+# Shell scripts (local only)
+*.sh
+
 # Rust build artifacts
 /target/
 **/*.rs.bk
@@ -25,3 +28,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Test files
+test.html
