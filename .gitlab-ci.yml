@@ -39,7 +39,7 @@ build:
     expire_in: 1 week
   only:
     - main
-    - master
+    
 
 # Deploy to GitLab Pages
 pages:
@@ -52,7 +52,7 @@ pages:
       - public
   only:
     - main
-    - master
+    
   environment:
     name: production
     url: https://abolfazlghorbani369.gitlab.io/aportfolio/
