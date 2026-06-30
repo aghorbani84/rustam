@@ -1,4 +1,5 @@
 ![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)
+![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)
 # 🦀 Abolfazl Ghorbani - Portfolio
 
 <div align="center">
