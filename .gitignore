@@ -1,10 +1,10 @@
-# Rust
+# Rust build artifacts
 /target/
 **/*.rs.bk
 Cargo.lock.bak
 *.pdb
 
-# Dioxus
+# Dioxus dist
 /dist/
 
 # IDE
@@ -22,9 +22,6 @@ Thumbs.db
 *.backup
 *.bak
 *.orig
-
-# Scripts (optional - comment if you want to keep them)
-# *.sh
 
 # Logs
 *.log
