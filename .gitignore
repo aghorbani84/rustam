@@ -6,6 +6,7 @@
 **/*.rs.bk
 Cargo.lock.bak
 *.pdb
+Cargo.toml.backup
 
 # Dioxus dist
 /dist/
