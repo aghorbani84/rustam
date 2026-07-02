@@ -215,10 +215,15 @@ Project Link: [https://gitlab.com/abolfazlghorbani369/aportfolio](https://gitlab
 
 </div>
 
+
 ## Project Screenshots
 
+<div align="center">
+
 ### Homepage
-![Homepage](assets/homepage.png)
+![Homepage](./assets/homepage.png)
 
 ### My Project
-![My Project](assets/myproject.png)
+![My Project](./assets/myproject.png)
+
+</div>
