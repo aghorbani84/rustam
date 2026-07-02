@@ -9,7 +9,8 @@ pub enum Theme {
 }
 
 pub fn use_theme_provider() -> Signal<Theme> {
-    use_context_provider(|| use_signal(|| Theme::System))
+    let theme_signal = use_signal(|| Theme::System);
+    use_context_provider(|| theme_signal)
 }
 
 pub fn use_apply_theme() {
