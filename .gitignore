@@ -1,6 +1,11 @@
 # Shell scripts (local only)
 *.sh
 
+# Python scripts (local only)
+*.py
+__pycache__/
+*.pyc
+
 # Rust build artifacts
 /target/
 **/*.rs.bk
@@ -21,6 +26,7 @@ Cargo.toml.backup
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Backup
 *.backup
@@ -32,4 +38,7 @@ Thumbs.db
 
 # Test files
 test.html
-target/
+
+# Environment
+.env
+.env.local

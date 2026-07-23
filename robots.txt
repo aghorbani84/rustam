@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abolfazlghorbani369.github.io/aportfolio/sitemap.xml

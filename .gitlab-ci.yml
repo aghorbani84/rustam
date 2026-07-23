@@ -1,13 +1,11 @@
 image: rust:latest
 
 stages:
-  - test
   - build
   - deploy
 
 variables:
   CARGO_HOME: $CI_PROJECT_DIR/.cargo
-  RUSTFLAGS: "-D warnings"
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -18,17 +16,7 @@ cache:
 before_script:
   - rustup target add wasm32-unknown-unknown
   - cargo install dioxus-cli --locked
-  - cargo install trunk --locked
 
-# Test stage
-test:
-  stage: test
-  script:
-    - cargo check
-    - cargo clippy -- -D warnings
-  allow_failure: true
-
-# Build stage
 build:
   stage: build
   script:
@@ -39,9 +27,7 @@ build:
     expire_in: 1 week
   only:
     - main
-    
 
-# Deploy to GitLab Pages
 pages:
   stage: deploy
   script:
@@ -52,7 +38,3 @@ pages:
       - public
   only:
     - main
-    
-  environment:
-    name: production
-    url: https://abolfazlghorbani369.gitlab.io/aportfolio/

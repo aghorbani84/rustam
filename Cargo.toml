@@ -4,9 +4,11 @@ version = "1.0.0"
 edition = "2024"
 authors = ["Abolfazl Ghorbani <abolfazlghorbani369@gmail.com>"]
 description = "Modern Portfolio Website built with Rust and Dioxus"
-license = "MIT"
-repository = "https://gitlab.com/abolfazlghorbani369/saas-dioxus-app"
-homepage = "https://abolfazlghorbani369.gitlab.io/saas-dioxus-app"
+license = "CC-BY-NC-ND-4.0"
+repository = "https://github.com/abolfazlghorbani369/aportfolio"
+homepage = "https://abolfazlghorbani369.github.io/aportfolio/"
+keywords = ["rust", "dioxus", "portfolio", "wasm", "webassembly"]
+categories = ["web-programming"]
 
 [dependencies]
 dioxus = { version = "0.7", features = ["web", "router"] }
@@ -42,3 +44,7 @@ lto = true
 codegen-units = 1
 panic = "abort"
 strip = true
+
+[profile.dev]
+opt-level = 0
+debug = true

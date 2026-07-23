@@ -1,5 +1,3 @@
-![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)
-![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)
 # 🦀 Abolfazl Ghorbani - Portfolio
 
 <div align="center">
@@ -11,9 +9,8 @@
 
 **Modern Portfolio Website built with Rust & Dioxus**
 
-[Live Demo (GitLab)](https://abolfazlghorbani369.gitlab.io/aportfolio/) •
-[Live Demo (GitHub)](https://abolfazlghorbani369.github.io/aportfolio/) •
-[Source Code](https://gitlab.com/abolfazlghorbani369/aportfolio)
+[🌐 Live Demo](https://abolfazlghorbani369.github.io/aportfolio/) •
+[📦 Source Code](https://github.com/abolfazlghorbani369/aportfolio)
 
 </div>
 
@@ -28,14 +25,17 @@
 - 🎯 **Multiple Apps** - Portfolio, Todo, Pomodoro Timer, Markdown Editor
 - 💾 **Local Storage** - Persistent data across sessions
 - 🚀 **Production Ready** - Optimized build with minimal bundle size
+- 📱 **PWA Ready** - Installable as a native app
 
 ## 🛠️ Tech Stack
 
-- **Language:** Rust (2024 Edition)
-- **Framework:** Dioxus 0.7
-- **Styling:** Tailwind CSS
-- **Build Tool:** Trunk
-- **Target:** WebAssembly (WASM)
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Rust | 2024 Edition | Core Language |
+| Dioxus | 0.7 | UI Framework |
+| Tailwind CSS | 3.x | Styling |
+| WebAssembly | - | Runtime |
+| Trunk | - | Build Tool |
 
 ## 📦 Projects Included
 
@@ -54,19 +54,13 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Install Dioxus CLI
 cargo install dioxus-cli
-
-# Install Trunk
-cargo install trunk
 ```
 
 ### Development
 
 ```bash
-# Clone repository
-git clone https://gitlab.com/abolfazlghorbani369/aportfolio.git
+git clone https://github.com/abolfazlghorbani369/aportfolio.git
 cd aportfolio
-
-# Start development server
 dx serve
 ```
 
@@ -75,45 +69,28 @@ Visit `http://localhost:8080`
 ### Production Build
 
 ```bash
-# Build for production
 dx build --release
-
-# Output will be in ./dist/
 ```
 
 ## 🌐 Deployment
 
-### GitLab Pages
-
-1. Push to GitLab repository
-2. CI/CD pipeline will automatically build and deploy
-3. Access at: `https://abolfazlghorbani369.gitlab.io/aportfolio/`
-
 ### GitHub Pages
+- Push to `main` branch
+- GitHub Actions auto-deploys
+- Live at: `https://abolfazlghorbani369.github.io/aportfolio/`
 
-1. Push to GitHub repository
-2. GitHub Actions will automatically build and deploy
-3. Access at: `https://abolfazlghorbani369.github.io/aportfolio/`
+### GitLab Pages
+- Push to `main` branch
+- GitLab CI auto-deploys
+- Live at: `https://abolfazlghorbani369.gitlab.io/aportfolio/`
 
 ## 📁 Project Structure
 
 ```
 src/
 ├── components/     # Reusable UI components
-│   ├── button.rs
-│   ├── input.rs
-│   ├── modal.rs
-│   ├── project_card.rs
-│   └── ...
 ├── pages/          # Route-based pages
-│   ├── home.rs
-│   ├── about.rs
-│   ├── projects.rs
-│   └── ...
 ├── hooks/          # Custom hooks
-│   ├── use_theme.rs
-│   ├── use_local_storage.rs
-│   └── ...
 ├── state/          # Global state management
 ├── services/       # API calls
 ├── utils/          # Helper functions
@@ -123,45 +100,7 @@ src/
 └── main.rs         # Entry point
 ```
 
-## 🎯 Features in Detail
-
-### Dark Mode
-- Automatic detection of system preference
-- Manual toggle with localStorage persistence
-- Smooth transitions between themes
-
-### Mobile Menu
-- Animated hamburger icon
-- Slide-down menu with overlay
-- Auto-close on link click
-- Touch-friendly interface
-
-### Todo App
-- Add, edit, delete tasks
-- Priority levels (Low, Medium, High)
-- Filter by status and priority
-- Search functionality
-- LocalStorage persistence
-
-### Pomodoro Timer
-- Circular progress animation
-- Customizable work/break durations
-- Session statistics
-- Sound notifications
-- LocalStorage persistence
-
-### Markdown Editor
-- Real-time preview
-- Split view (editor + preview)
-- Export to HTML/Markdown
-- Auto-save functionality
-- Toolbar with common actions
-
-## 🔧 Configuration
-
-### Build Optimization
-
-The project uses optimized build settings:
+## 🔧 Build Optimization
 
 ```toml
 [profile.release]
@@ -172,38 +111,20 @@ panic = "abort"      # Smaller binary
 strip = true         # Remove debug symbols
 ```
 
-### Browser Support
-
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
 ## 📝 License
 
-MIT License - see [LICENSE](LICENSE) for details
+This project is licensed under **CC BY-NC-ND 4.0**:
+- ✅ Copy with attribution
+- ❌ No commercial use
+- ❌ No derivative works
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+See [LICENSE](LICENSE) for details.
 
 ## 📧 Contact
 
-Abolfazl Ghorbani - [@abolfazlghorbani369](https://gitlab.com/abolfazlghorbani369)
-
-Project Link: [https://gitlab.com/abolfazlghorbani369/aportfolio](https://gitlab.com/abolfazlghorbani369/aportfolio)
-
-## 🙏 Acknowledgments
-
-- [Dioxus](https://dioxuslabs.com/) - Amazing Rust framework
-- [Rust](https://www.rust-lang.org/) - The programming language
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+**Abolfazl Ghorbani**
+- GitHub: [@abolfazlghorbani369](https://github.com/abolfazlghorbani369)
+- Email: abolfazlghorbani369@gmail.com
 
 ---
 
@@ -211,19 +132,6 @@ Project Link: [https://gitlab.com/abolfazlghorbani369/aportfolio](https://gitlab
 
 **Built with ❤️ using Rust & Dioxus**
 
-⭐ Star this repo if you like it!
-
-</div>
-
-
-## Project Screenshots
-
-<div align="center">
-
-### Homepage
-![Homepage](./assets/homepage.png)
-
-### My Project
-![My Project](./assets/myproject.png)
+© 2026 Abolfazl Ghorbani. All rights reserved.
 
 </div>
