@@ -65,3 +65,5 @@ npm-debug.log*
 # Node (if any)
 # ═══════════════════════════════════════
 node_modules/
+__pycache__/
+fix.sh
