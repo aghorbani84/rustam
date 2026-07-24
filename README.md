@@ -9,8 +9,8 @@
 
 **Modern Portfolio Website built with Rust & Dioxus**
 
-[🌐 Live Demo](https://abolfazlghorbani369.github.io/aportfolio/) •
-[📦 Source Code](https://github.com/abolfazlghorbani369/aportfolio)
+[🌐 Live Demo](https://abolfazlghorbani369.github.io/rustam/) •
+[📦 Source Code](https://github.com/abolfazlghorbani369/rustam)
 
 </div>
 
@@ -59,8 +59,8 @@ cargo install dioxus-cli
 ### Development
 
 ```bash
-git clone https://github.com/abolfazlghorbani369/aportfolio.git
-cd aportfolio
+git clone https://github.com/abolfazlghorbani369/rustam.git
+cd rustam
 dx serve
 ```
 
@@ -77,12 +77,12 @@ dx build --release
 ### GitHub Pages
 - Push to `main` branch
 - GitHub Actions auto-deploys
-- Live at: `https://abolfazlghorbani369.github.io/aportfolio/`
+- Live at: `https://abolfazlghorbani369.github.io/rustam/`
 
 ### GitLab Pages
 - Push to `main` branch
 - GitLab CI auto-deploys
-- Live at: `https://abolfazlghorbani369.gitlab.io/aportfolio/`
+- Live at: `https://abolfazlghorbani369.gitlab.io/rustam/`
 
 ## 📁 Project Structure
 

@@ -1,12 +1,12 @@
 [package]
-name = "aportfolio"
+name = "rustam"
 version = "1.0.0"
 edition = "2024"
 authors = ["Abolfazl Ghorbani <abolfazlghorbani369@gmail.com>"]
 description = "Modern Portfolio Website built with Rust and Dioxus"
 license = "CC-BY-NC-ND-4.0"
-repository = "https://github.com/abolfazlghorbani369/aportfolio"
-homepage = "https://abolfazlghorbani369.github.io/aportfolio/"
+repository = "https://github.com/abolfazlghorbani369/rustam"
+homepage = "https://abolfazlghorbani369.github.io/rustam/"
 keywords = ["rust", "dioxus", "portfolio", "wasm", "webassembly"]
 categories = ["web-programming"]
 
