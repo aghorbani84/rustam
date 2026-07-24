@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy RUSTAM to GitHub Pages
 
 on:
   push:
@@ -18,8 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -40,6 +39,9 @@ jobs:
 
       - name: Build
         run: dx build --release
+
+      - name: SPA fallback (index.html -> 404.html)
+        run: cp dist/index.html dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
