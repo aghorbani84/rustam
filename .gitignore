@@ -1,44 +1,67 @@
-# Shell scripts (local only)
-*.sh
+# ═══════════════════════════════════════
+# Rust Build Artifacts
+# ═══════════════════════════════════════
+/target/
+/dist/
+**/*.rs.bk
+*.pdb
+Cargo.lock
 
-# Python scripts (local only)
+# ═══════════════════════════════════════
+# Environment & Secrets
+# ═══════════════════════════════════════
+.env
+.env.*
+*.env
+.env.local
+.env.development
+.env.production
+secrets/
+credentials/
+
+# ═══════════════════════════════════════
+# Scripts (local only)
+# ═══════════════════════════════════════
+*.sh
 *.py
 __pycache__/
 *.pyc
 
-# Rust build artifacts
-/target/
-**/*.rs.bk
-Cargo.lock.bak
-*.pdb
-Cargo.toml.backup
-
-# Dioxus dist
-/dist/
-
-# IDE
+# ═══════════════════════════════════════
+# IDE & Editor
+# ═══════════════════════════════════════
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.project
+.classpath
 
-# OS
+# ═══════════════════════════════════════
+# OS Files
+# ═══════════════════════════════════════
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Backup
+# ═══════════════════════════════════════
+# Backup & Temp
+# ═══════════════════════════════════════
 *.backup
 *.bak
 *.orig
-
-# Logs
-*.log
-
-# Test files
+*.tmp
+*.temp
 test.html
 
-# Environment
-.env
-.env.local
+# ═══════════════════════════════════════
+# Logs
+# ═══════════════════════════════════════
+*.log
+npm-debug.log*
+
+# ═══════════════════════════════════════
+# Node (if any)
+# ═══════════════════════════════════════
+node_modules/
