@@ -67,3 +67,4 @@ npm-debug.log*
 node_modules/
 __pycache__/
 fix.sh
+deploy_web.sh
