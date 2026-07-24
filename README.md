@@ -9,8 +9,8 @@
 
 **Modern Portfolio Website built with Rust & Dioxus**
 
-[🌐 Live Demo](https://abolfazlghorbani369.github.io/rustam/) •
-[📦 Source Code](https://github.com/abolfazlghorbani369/rustam)
+[🌐 Live Demo](https://aghorbani84.github.io/rustam/) •
+[📦 Source Code](https://github.com/aghorbani84/rustam)
 
 </div>
 
@@ -31,7 +31,7 @@
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| Rust | 2024 Edition | Core Language |
+| Rust | 2026 Edition | Core Language |
 | Dioxus | 0.7 | UI Framework |
 | Tailwind CSS | 3.x | Styling |
 | WebAssembly | - | Runtime |
