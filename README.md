@@ -123,7 +123,7 @@ See [LICENSE](LICENSE) for details.
 ## 📧 Contact
 
 **Abolfazl Ghorbani**
-- GitHub: [@abolfazlghorbani369](https://github.com/abolfazlghorbani369)
+- GitHub: [@aghorbani84](https://github.com/aghorbani84)
 - Email: abolfazlghorbani369@gmail.com
 
 ---
