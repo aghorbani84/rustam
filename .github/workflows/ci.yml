@@ -65,7 +65,7 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Install Dioxus CLI
-        run: cargo install dioxus-cli --locked
+        run: cargo install dioxus-cli --version 0.7.10 --locked
 
       - name: Compile release bundle
         run: cargo build --release --target wasm32-unknown-unknown --locked
