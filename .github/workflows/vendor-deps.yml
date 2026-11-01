@@ -59,5 +59,7 @@ jobs:
           STATUS=$?
           echo "EXIT=$STATUS" >> /tmp/publish.log
           sed -E 's#https://[^@]*@#https://***@#g' /tmp/publish.log > /tmp/publish-redacted.log
-          gh issue create --title "vendor-publish-debug" --body "$(cat /tmp/publish-redacted.log)" || true
+          python3 -c 'import json; print(json.dumps({"title":"vendor-publish-debug","body":open("/tmp/publish-redacted.log").read()}))' > /tmp/issue.json
+          curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/issues" -d @/tmp/issue.json > /tmp/issue-response.json || true
+          cat /tmp/issue-response.json >> /tmp/publish-redacted.log || true
           exit $STATUS
