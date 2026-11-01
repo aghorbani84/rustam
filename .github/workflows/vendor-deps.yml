@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
-  checks: write
 
 jobs:
   vendor:
@@ -41,47 +39,18 @@ jobs:
       - name: Check wasm target
         run: cargo check --target wasm32-unknown-unknown --locked
 
-      - name: Debug copy vendor
+      - name: Publish vendor tarball to temporary branch
         run: |
-          set -x
-          rm -rf /tmp/vendor-snapshot
-          mkdir -p /tmp/vendor-snapshot
-          cp -a vendor /tmp/vendor-snapshot/vendor
-          du -sh /tmp/vendor-snapshot/vendor
-
-      - name: Debug git init
-        run: |
-          set -x
-          cd /tmp/vendor-snapshot
+          set -euo pipefail
+          rm -rf /tmp/vendor-tarball
+          mkdir -p /tmp/vendor-tarball
+          cp vendor.tar.gz /tmp/vendor-tarball/
+          cd /tmp/vendor-tarball
           git init -q
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Debug git add
-        run: |
-          set -x
-          cd /tmp/vendor-snapshot
+          git config http.postBuffer 524288000
+          git config http.version HTTP/1.1
           git add -A
-
-      - name: Debug git commit
-        run: |
-          set -x
-          cd /tmp/vendor-snapshot
-          git commit -q -m "Temporary vendor snapshot for offline build"
-
-      - name: Debug git push
-        continue-on-error: true
-        run: |
-          set -x
-          cd /tmp/vendor-snapshot
-          set +e
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" vendor-snapshot:refs/heads/vendor-snapshot --force > /tmp/push.log 2>&1
-          STATUS=$?
-          echo "PUSH_EXIT=$STATUS" >> /tmp/push.log
-          echo "=== token permissions ===" >> /tmp/push.log
-          curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" https://api.github.com/repos/${{ github.repository }} | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("permissions"))' >> /tmp/push.log 2>&1 || true
-          echo "=== create branch test ===" >> /tmp/push.log
-          curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/${{ github.repository }}/git/refs -d '{"ref":"refs/heads/vendor-test","sha":"${{ github.sha }}"}' >> /tmp/push.log 2>&1 || true
-          sed -E 's#https://[^@]*@#https://***@#g' /tmp/push.log > /tmp/push-redacted.log
-          python3 -c 'import json; print(json.dumps({"name":"vendor-debug","head_sha":"${{ github.sha }}","status":"completed","conclusion":"neutral","output":{"title":"vendor push debug","summary":open("/tmp/push-redacted.log").read()}}))' > /tmp/check.json
-          curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/check-runs" -d @/tmp/check.json
+          git commit -q -m "Temporary vendor tarball for offline build"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" vendor-tarball:refs/heads/vendor-tarball --force 2>&1 | sed -E 's#https://[^@]*@#https://***@#g'
