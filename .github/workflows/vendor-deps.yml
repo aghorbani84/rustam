@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   vendor:
@@ -41,14 +42,22 @@ jobs:
 
       - name: Publish vendor snapshot to temporary branch
         run: |
-          set -euo pipefail
-          rm -rf /tmp/vendor-snapshot
-          mkdir -p /tmp/vendor-snapshot
-          cp -a vendor /tmp/vendor-snapshot/vendor
-          cd /tmp/vendor-snapshot
-          git init -q
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -q -m "Temporary vendor snapshot for offline build"
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" vendor-snapshot:refs/heads/vendor-snapshot --force 2>&1 | sed -E 's#https://[^@]*@#https://***@#g'
+          set +e
+          {
+            set -x
+            rm -rf /tmp/vendor-snapshot
+            mkdir -p /tmp/vendor-snapshot
+            cp -a vendor /tmp/vendor-snapshot/vendor
+            cd /tmp/vendor-snapshot
+            git init -q
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -q -m "Temporary vendor snapshot for offline build"
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" vendor-snapshot:refs/heads/vendor-snapshot --force
+          } > /tmp/publish.log 2>&1
+          STATUS=$?
+          echo "EXIT=$STATUS" >> /tmp/publish.log
+          sed -E 's#https://[^@]*@#https://***@#g' /tmp/publish.log > /tmp/publish-redacted.log
+          gh issue create --title "vendor-publish-debug" --body "$(cat /tmp/publish-redacted.log)" || true
+          exit $STATUS
