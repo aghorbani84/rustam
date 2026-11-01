@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: [main, arena/79ce9ac4-rustam]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Format, lint, and type-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+          components: clippy, rustfmt
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Check formatting
+        run: cargo fmt --check
+
+      - name: Clippy
+        run: cargo clippy --target wasm32-unknown-unknown --locked -- -D warnings
+
+      - name: Type-check (including tests)
+        run: cargo check --target wasm32-unknown-unknown --locked --tests
+
+  build:
+    name: Build production bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install Dioxus CLI
+        run: |
+          curl -sL https://github.com/DioxusLabs/dioxus/releases/download/v0.7.10/dx-x86_64-unknown-linux-gnu.tar.gz -o /tmp/dx.tar.gz
+          tar -xzf /tmp/dx.tar.gz -C /usr/local/bin
+          dx --version
+
+      - name: Build
+        run: dx build --release
+
+      - name: Verify build output
+        run: |
+          set -euo pipefail
+          if [ ! -f dist/index.html ]; then
+            echo "::error::dist/index.html not found"
+            find dist -maxdepth 3 | sort || true
+            exit 1
+          fi
+          cp dist/index.html dist/404.html
+          ls -lh dist
+
+      - name: Upload production bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: rustam-dist
+          path: dist
+          retention-days: 7
