@@ -5,7 +5,6 @@
 /dist/
 **/*.rs.bk
 *.pdb
-Cargo.lock
 
 # ═══════════════════════════════════════
 # Environment & Secrets
@@ -22,8 +21,6 @@ credentials/
 # ═══════════════════════════════════════
 # Scripts (local only)
 # ═══════════════════════════════════════
-*.sh
-*.py
 __pycache__/
 *.pyc
 
