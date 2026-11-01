@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   vendor:
@@ -39,9 +39,14 @@ jobs:
       - name: Check wasm target
         run: cargo check --target wasm32-unknown-unknown --locked
 
-      - name: Upload vendor artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: vendor
-          path: vendor.tar.gz
-          retention-days: 1
+      - name: Publish vendor snapshot to temporary branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan vendor-snapshot
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a vendor .
+          git add -A
+          git commit -m "Temporary vendor snapshot for offline build"
+          git push origin vendor-snapshot --force
