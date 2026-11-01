@@ -72,12 +72,12 @@ jobs:
         run: |
           set -x
           cd /tmp/vendor-snapshot
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" vendor-snapshot:refs/heads/vendor-snapshot --force 2>&1 | sed -E 's#https://[^@]*@#https://***@#g'
-
-      - name: Debug report
-        run: |
-          set -x
-          echo "token header:"
-          curl -sI -H "Authorization: Bearer ${GITHUB_TOKEN}" https://api.github.com/user | grep -i 'x-oauth-scopes\|x-accepted' || true
-          echo "permissions:"
-          curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" https://api.github.com/repos/${{ github.repository }} | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("permissions"))' || true
+          set +e
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" vendor-snapshot:refs/heads/vendor-snapshot --force > /tmp/push.log 2>&1
+          STATUS=$?
+          echo "PUSH_EXIT=$STATUS" >> /tmp/push.log
+          sed -E 's#https://[^@]*@#https://***@#g' /tmp/push.log > /tmp/push-redacted.log
+          python3 -c 'import json; print(json.dumps({"title":"vendor-push-debug","body":open("/tmp/push-redacted.log").read()}))' > /tmp/issue.json
+          curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/issues" -d @/tmp/issue.json > /tmp/issue-response.json
+          cat /tmp/issue-response.json >> /tmp/push-redacted.log
+          exit $STATUS
