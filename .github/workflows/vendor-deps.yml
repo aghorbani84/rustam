@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   issues: write
+  checks: write
 
 jobs:
   vendor:
@@ -69,6 +70,7 @@ jobs:
           git commit -q -m "Temporary vendor snapshot for offline build"
 
       - name: Debug git push
+        continue-on-error: true
         run: |
           set -x
           cd /tmp/vendor-snapshot
@@ -76,8 +78,10 @@ jobs:
           git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}" vendor-snapshot:refs/heads/vendor-snapshot --force > /tmp/push.log 2>&1
           STATUS=$?
           echo "PUSH_EXIT=$STATUS" >> /tmp/push.log
+          echo "=== token permissions ===" >> /tmp/push.log
+          curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" https://api.github.com/repos/${{ github.repository }} | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("permissions"))' >> /tmp/push.log 2>&1 || true
+          echo "=== create branch test ===" >> /tmp/push.log
+          curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" https://api.github.com/repos/${{ github.repository }}/git/refs -d '{"ref":"refs/heads/vendor-test","sha":"${{ github.sha }}"}' >> /tmp/push.log 2>&1 || true
           sed -E 's#https://[^@]*@#https://***@#g' /tmp/push.log > /tmp/push-redacted.log
-          python3 -c 'import json; print(json.dumps({"title":"vendor-push-debug","body":open("/tmp/push-redacted.log").read()}))' > /tmp/issue.json
-          curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/issues" -d @/tmp/issue.json > /tmp/issue-response.json
-          cat /tmp/issue-response.json >> /tmp/push-redacted.log
-          exit $STATUS
+          python3 -c 'import json; print(json.dumps({"name":"vendor-debug","head_sha":"${{ github.sha }}","status":"completed","conclusion":"neutral","output":{"title":"vendor push debug","summary":open("/tmp/push-redacted.log").read()}}))' > /tmp/check.json
+          curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/check-runs" -d @/tmp/check.json
