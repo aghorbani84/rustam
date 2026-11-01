@@ -1,4 +1,4 @@
-use pulldown_cmark::{html, Options, Parser};
+use pulldown_cmark::{Options, Parser, html};
 
 pub fn parse_markdown(input: &str) -> String {
     let options = Options::empty();

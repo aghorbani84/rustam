@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::components::social_links::SocialLinks;
+use dioxus::prelude::*;
 
 #[component]
 pub fn About() -> Element {

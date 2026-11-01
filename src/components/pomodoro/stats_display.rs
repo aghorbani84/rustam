@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::models::pomodoro::PomodoroStats;
+use dioxus::prelude::*;
 
 #[derive(Props, Clone, PartialEq)]
 pub struct StatsDisplayProps {

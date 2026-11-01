@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::models::todo::Priority;
+use dioxus::prelude::*;
 
 #[derive(Props, Clone, PartialEq)]
 pub struct TodoFormProps {

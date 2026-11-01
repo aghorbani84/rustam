@@ -1,10 +1,6 @@
-use dioxus::prelude::*;
-use crate::components::markdown::{
-    toolbar::Toolbar,
-    editor::Editor,
-    preview::Preview,
-};
+use crate::components::markdown::{editor::Editor, preview::Preview, toolbar::Toolbar};
 use crate::hooks::use_markdown::parse_markdown;
+use dioxus::prelude::*;
 
 #[component]
 pub fn MarkdownEditor() -> Element {

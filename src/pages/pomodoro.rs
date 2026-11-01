@@ -1,20 +1,17 @@
-use dioxus::prelude::*;
 use crate::components::pomodoro::{
-    timer_display::TimerDisplay,
-    timer_controls::TimerControls,
+    stats_display::StatsDisplay, timer_controls::TimerControls, timer_display::TimerDisplay,
     timer_settings::TimerSettings,
-    stats_display::StatsDisplay,
 };
-use crate::hooks::use_local_storage::{use_local_storage, save_to_local_storage};
 use crate::hooks::use_interval::use_interval;
-use crate::models::pomodoro::{
-    PomodoroSettings, PomodoroStats, TimerMode, TimerState,
-};
+use crate::hooks::use_local_storage::{save_to_local_storage, use_local_storage};
+use crate::models::pomodoro::{PomodoroSettings, PomodoroStats, TimerMode, TimerState};
+use dioxus::prelude::*;
 use std::time::Duration;
 
 #[component]
 pub fn Pomodoro() -> Element {
-    let mut settings = use_local_storage::<PomodoroSettings>("pomodoro_settings", PomodoroSettings::default());
+    let mut settings =
+        use_local_storage::<PomodoroSettings>("pomodoro_settings", PomodoroSettings::default());
     let mut stats = use_local_storage::<PomodoroStats>("pomodoro_stats", PomodoroStats::default());
 
     let mut timer_state = use_signal(|| TimerState::Idle);

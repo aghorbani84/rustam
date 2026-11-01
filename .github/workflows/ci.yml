@@ -65,10 +65,7 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Install Dioxus CLI
-        run: |
-          curl -sL https://github.com/DioxusLabs/dioxus/releases/download/v0.7.10/dx-x86_64-unknown-linux-gnu.tar.gz -o /tmp/dx.tar.gz
-          tar -xzf /tmp/dx.tar.gz -C /usr/local/bin
-          dx --version
+        run: cargo install dioxus-cli --locked
 
       - name: Build
         run: dx build --release

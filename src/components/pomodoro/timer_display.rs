@@ -1,9 +1,9 @@
-use dioxus::prelude::*;
 use crate::models::pomodoro::TimerMode;
+use dioxus::prelude::*;
 
 #[derive(Props, Clone, PartialEq)]
 pub struct TimerDisplayProps {
-    pub time_left: u32, // seconds
+    pub time_left: u32,  // seconds
     pub total_time: u32, // seconds
     pub mode: TimerMode,
     pub is_running: bool,

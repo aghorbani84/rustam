@@ -2,9 +2,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PomodoroSettings {
-    pub work_duration: u32,      // minutes
-    pub short_break: u32,        // minutes
-    pub long_break: u32,         // minutes
+    pub work_duration: u32, // minutes
+    pub short_break: u32,   // minutes
+    pub long_break: u32,    // minutes
     pub sessions_before_long: u32,
 }
 

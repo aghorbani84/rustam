@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::models::todo::TodoFilter;
+use dioxus::prelude::*;
 
 #[derive(Props, Clone, PartialEq)]
 pub struct TodoFiltersProps {

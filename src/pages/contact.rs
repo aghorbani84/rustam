@@ -1,5 +1,8 @@
+use crate::components::{
+    button::{Button, ButtonVariant},
+    input::Input,
+};
 use dioxus::prelude::*;
-use crate::components::{button::{Button, ButtonVariant}, input::Input};
 
 #[component]
 pub fn Contact() -> Element {
@@ -9,7 +12,12 @@ pub fn Contact() -> Element {
     let mut submitted = use_signal(|| false);
 
     let mut handle_submit = move || {
-        log::info!("Contact form submitted: {} - {} - {}", name(), email(), message());
+        log::info!(
+            "Contact form submitted: {} - {} - {}",
+            name(),
+            email(),
+            message()
+        );
         submitted.set(true);
     };
 

@@ -1,5 +1,5 @@
+use crate::models::todo::{Priority, Todo};
 use dioxus::prelude::*;
-use crate::models::todo::{Todo, Priority};
 
 #[derive(Props, Clone, PartialEq)]
 pub struct TodoItemProps {

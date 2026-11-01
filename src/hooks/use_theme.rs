@@ -15,11 +15,12 @@ pub fn use_theme_provider() -> Signal<Theme> {
 
 pub fn use_apply_theme() {
     let theme = use_theme_provider();
-    
+
     use_effect(move || {
         if let Some(window) = web_sys::window()
             && let Some(document) = window.document()
-            && let Some(body) = document.body() {
+            && let Some(body) = document.body()
+        {
             match theme() {
                 Theme::Dark => {
                     body.set_class_name("dark");
@@ -28,7 +29,11 @@ pub fn use_apply_theme() {
                     body.set_class_name("");
                 }
                 Theme::System => {
-                    if let Some(media_query) = window.match_media("(prefers-color-scheme: dark)").ok().flatten() {
+                    if let Some(media_query) = window
+                        .match_media("(prefers-color-scheme: dark)")
+                        .ok()
+                        .flatten()
+                    {
                         if media_query.matches() {
                             body.set_class_name("dark");
                         } else {

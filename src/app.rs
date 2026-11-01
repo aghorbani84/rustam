@@ -1,9 +1,9 @@
-use dioxus::prelude::*;
+use crate::hooks::use_theme::{use_apply_theme, use_theme_provider};
 use crate::pages::{
-    home::Home, about::About, projects::Projects, skills::Skills,
-    contact::Contact, todo::TodoPage, pomodoro::Pomodoro, markdown::MarkdownEditor
+    about::About, contact::Contact, home::Home, markdown::MarkdownEditor, pomodoro::Pomodoro,
+    projects::Projects, skills::Skills, todo::TodoPage,
 };
-use crate::hooks::use_theme::{use_theme_provider, use_apply_theme};
+use dioxus::prelude::*;
 
 #[component]
 pub fn App() -> Element {
@@ -18,22 +18,22 @@ pub fn App() -> Element {
 #[derive(Routable, Clone, PartialEq)]
 pub enum Route {
     #[layout(MainLayout)]
-        #[route("/")]
-        Home {},
-        #[route("/about")]
-        About {},
-        #[route("/projects")]
-        Projects {},
-        #[route("/skills")]
-        Skills {},
-        #[route("/contact")]
-        Contact {},
-        #[route("/todo")]
-        TodoPage {},
-        #[route("/pomodoro")]
-        Pomodoro {},
-        #[route("/markdown")]
-        MarkdownEditor {},
+    #[route("/")]
+    Home {},
+    #[route("/about")]
+    About {},
+    #[route("/projects")]
+    Projects {},
+    #[route("/skills")]
+    Skills {},
+    #[route("/contact")]
+    Contact {},
+    #[route("/todo")]
+    TodoPage {},
+    #[route("/pomodoro")]
+    Pomodoro {},
+    #[route("/markdown")]
+    MarkdownEditor {},
 }
 
 #[component]

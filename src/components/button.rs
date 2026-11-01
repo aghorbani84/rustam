@@ -42,9 +42,15 @@ pub fn Button(props: ButtonProps) -> Element {
     let base_classes = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed";
 
     let variant_classes = match props.variant {
-        ButtonVariant::Primary => "bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500 shadow-sm",
-        ButtonVariant::Secondary => "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700",
-        ButtonVariant::Ghost => "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800",
+        ButtonVariant::Primary => {
+            "bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500 shadow-sm"
+        }
+        ButtonVariant::Secondary => {
+            "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+        }
+        ButtonVariant::Ghost => {
+            "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        }
         ButtonVariant::Danger => "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
     };
 

@@ -1,11 +1,9 @@
-use dioxus::prelude::*;
 use crate::components::todo::{
-    todo_item::TodoItem,
-    todo_form::TodoForm,
-    todo_filters::TodoFilters,
+    todo_filters::TodoFilters, todo_form::TodoForm, todo_item::TodoItem,
 };
-use crate::hooks::use_local_storage::{use_local_storage, save_to_local_storage};
-use crate::models::todo::{Todo, TodoFilter, Priority};
+use crate::hooks::use_local_storage::{save_to_local_storage, use_local_storage};
+use crate::models::todo::{Priority, Todo, TodoFilter};
+use dioxus::prelude::*;
 
 #[component]
 pub fn TodoPage() -> Element {
@@ -62,7 +60,10 @@ pub fn TodoPage() -> Element {
             };
 
             let matches_search = search_query().is_empty()
-                || todo.title.to_lowercase().contains(&search_query().to_lowercase());
+                || todo
+                    .title
+                    .to_lowercase()
+                    .contains(&search_query().to_lowercase());
 
             matches_filter && matches_search
         })

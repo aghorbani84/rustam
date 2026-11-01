@@ -11,7 +11,7 @@ pub struct ModalProps {
 #[component]
 pub fn Modal(props: ModalProps) -> Element {
     if !props.is_open {
-        return rsx! { };
+        return rsx! {};
     }
 
     rsx! {

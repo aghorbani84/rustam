@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::components::skill_badge::SkillBadge;
+use dioxus::prelude::*;
 
 #[component]
 pub fn Skills() -> Element {

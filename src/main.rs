@@ -1,12 +1,11 @@
 mod app;
 mod components;
-mod pages;
-mod state;
 mod hooks;
-mod services;
-mod utils;
 mod models;
-
+mod pages;
+mod services;
+mod state;
+mod utils;
 
 fn main() {
     // Initialize logger
